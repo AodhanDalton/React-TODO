@@ -47,18 +47,19 @@ return (
 		<h5>Todo List</h5>
 	<form onSubmit={handleAddTodo}>
 	    
-		<div>
-	    	<input ref={todoNameRef} className='input1' type="text" placeholder='Todo Example' />
+		<div id='float-label'>
+	    	<input ref={todoNameRef} type="text" />
+			<label>What I have to do </label>
 		</div>
 			<button type='submit' className="addBtn"> Add todo </button>
 			<button onClick={handleClearTodos} className="clearBtn"> Clear Completed </button>
 
 		<div className='div-dif'> {todos.filter(todo => !todo.complete).length} left to do </div>    
 	</form> 
-	<TodoList todos={todos} toggleTodo={toggleTodo} className=''/>
+		<TodoList todos={todos} toggleTodo={toggleTodo}/>
 	</div>
 	</>
-      )
+	)
 }
 
 
