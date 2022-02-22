@@ -1,7 +1,7 @@
 import TodoList from './TodoList.js'
 import React, { useState, useRef, useEffect } from 'react';
 import {v4 as uuidv4} from 'uuid'
-
+import './stylesheet.css'
 
 const LOCAL_STORAGE_KEY = 'todoApp.todos'
 
@@ -20,7 +20,7 @@ localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos))
 
 function toggleTodo(id) {
 const newTodos = [...todos]
-const todo = newTodos.find(todo => todo,id === id)
+const todo = newTodos.find(todo => todo.id === id)
 todo.complete = !todo.complete
 setTodos(newTodos)
 }
@@ -43,12 +43,21 @@ todoNameRef.current.value = null
 
 return (
 	<>
-	     <TodoList todos={todos} toggleTodo={toggleTodo} />
-	     <input ref={todoNameRef} type="text" />
-	<button onClick={handleAddTodo}> Add todo </button>
-	<button onClick={handleClearTodos}> Clear Completed </button>
-	<div> {todos.filter(todo => !todo.complete).length} left to do </div>    
-	 </>
+	<div className='form-box'>
+		<h5>Todo List</h5>
+	<form onSubmit={handleAddTodo}>
+	    
+		<div>
+	    	<input ref={todoNameRef} className='input1' type="text" placeholder='Todo Example' />
+		</div>
+			<button type='submit' className="addBtn"> Add todo </button>
+			<button onClick={handleClearTodos} className="clearBtn"> Clear Completed </button>
+
+		<div className='div-dif'> {todos.filter(todo => !todo.complete).length} left to do </div>    
+	</form> 
+	<TodoList todos={todos} toggleTodo={toggleTodo} className=''/>
+	</div>
+	</>
       )
 }
 
